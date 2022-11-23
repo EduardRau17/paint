@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cel_mai_aproape_smr", "cel_mai_aproape_smr\cel_mai_aproape_smr.csproj", "{6E149686-4995-4801-B99F-35A182E03A7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E149686-4995-4801-B99F-35A182E03A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E149686-4995-4801-B99F-35A182E03A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E149686-4995-4801-B99F-35A182E03A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E149686-4995-4801-B99F-35A182E03A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B138000-9FFC-4F82-9BAB-731DEAE7CDF0}
+	EndGlobalSection
+EndGlobal
