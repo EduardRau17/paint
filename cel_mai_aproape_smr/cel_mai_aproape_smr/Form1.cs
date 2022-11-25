@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading.Tasks;
 //using System.Threading;
 
 namespace cel_mai_aproape_smr
@@ -20,6 +21,14 @@ namespace cel_mai_aproape_smr
         private bool valid_strat = false;
         private bool lala = false;
         private String default_text = "Zi un nume shefule";
+        /// <topics>
+        /// 
+        ///
+        public Panel panel_topic;
+        public Button btn_topic_1;
+        public Button btn_topic_2;
+        public Button btn_topic_3;
+        ///
         public Form1()
         {
             InitializeComponent();
@@ -67,6 +76,7 @@ namespace cel_mai_aproape_smr
                 this.panel_name.BackColor = Color.Transparent;
                 game.Show();
                 this.Visible = false;
+
             }
         }
 
