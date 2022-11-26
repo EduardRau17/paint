@@ -19,7 +19,7 @@ namespace cel_mai_aproape_smr
         Pen pen;
         Pen pen_b;
         Form1 form1;
-        TextBox txt_topic;
+        Label txt_topic;
         //SolidBrush brush = new SolidBrush(Color.Gold);
         public form_game(Form1 form1)
         {
@@ -30,13 +30,24 @@ namespace cel_mai_aproape_smr
             pen_b = new Pen(Color.Gold, 10);
 
             pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+
+
             this.form1 = form1;
-            txt_topic = new TextBox();
-            this.Controls.Add(txt_topic);   AxHost yh jn un5 yhv5
-            txt_topic.Location = new Point(100, 500);
-            
 
+            this.txt_topic = new Label();
+            this.Controls.Add(txt_topic);
+            this.txt_topic.Location = new Point(800, 20);
+            //topic_name = "plm";
+            this.txt_topic.ForeColor = Color.Red;
+            this.txt_topic.AutoSize = true;
+            this.txt_topic.BackColor= Color.Transparent;
+                       
 
+        }
+
+        public void change_topic(string topic_name)
+        {
+            this.topic_name = topic_name;
         }
 
         private void change_colour_Click(object sender, EventArgs e)
@@ -126,7 +137,10 @@ namespace cel_mai_aproape_smr
             pictureBox12.BackColor = Color.Transparent;
             pictureBox11.BackColor = Color.Transparent;
             pictureBox10.BackColor = Color.Transparent;
-            panel1.BackColor = Color.Transparent;  
+            panel1.BackColor = Color.Transparent;
+
+
+            this.txt_topic.Text = topic_name;
 
         }
 

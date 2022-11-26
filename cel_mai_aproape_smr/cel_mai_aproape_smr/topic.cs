@@ -76,9 +76,10 @@ namespace cel_mai_aproape_smr
         private void Btn_topic_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            form1.c_topic = btn.Text;
-           
+            //form1.c_topic = btn.Text;
+            fgame.change_topic(btn.Text);
             form1.Visible = false;
+            fgame.Show(); 
 
             
         }
