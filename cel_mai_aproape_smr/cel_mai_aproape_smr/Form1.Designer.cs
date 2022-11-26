@@ -49,6 +49,7 @@
             this.panel_start.Name = "panel_start";
             this.panel_start.Size = new System.Drawing.Size(319, 217);
             this.panel_start.TabIndex = 1;
+            this.panel_start.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_start_Paint);
             // 
             // panel_name
             // 
@@ -112,7 +113,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel_start;
+        public System.Windows.Forms.Panel panel_start;
         private System.Windows.Forms.PictureBox pb_start;
         private System.Windows.Forms.PictureBox btn_close;
         private System.Windows.Forms.TextBox txt_name;

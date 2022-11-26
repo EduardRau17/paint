@@ -14,6 +14,7 @@ namespace cel_mai_aproape_smr
     public partial class Form1 : Form
     {
         form_game game;
+        topic topic;
         Timer timer_t;
         Random random;
         public String resurse = "../../resurse/";
@@ -21,14 +22,6 @@ namespace cel_mai_aproape_smr
         private bool valid_strat = false;
         private bool lala = false;
         private String default_text = "Zi un nume shefule";
-        /// <topics>
-        /// 
-        ///
-        public Panel panel_topic;
-        public Button btn_topic_1;
-        public Button btn_topic_2;
-        public Button btn_topic_3;
-        ///
         public Form1()
         {
             InitializeComponent();
@@ -60,6 +53,7 @@ namespace cel_mai_aproape_smr
             timer_t.Start();
             timer_t.Tick += new System.EventHandler(this.face_tick);
             random = new Random();
+            topic = new topic(this);
         }
 
         private void pb_start_Click(object sender, EventArgs e)
@@ -74,10 +68,10 @@ namespace cel_mai_aproape_smr
             {
                 this.nume = txt_name.Text;
                 this.panel_name.BackColor = Color.Transparent;
-                game.Show();
-                this.Visible = false;
+                topic.create_topic();
 
             }
+
         }
 
         private void btn_close_click(object sender, EventArgs e)
@@ -88,6 +82,11 @@ namespace cel_mai_aproape_smr
         private void txt_name_TextChanged(object sender, EventArgs e)
         {
             this.panel_name.BackColor = Color.Transparent;
+        }
+
+        private void panel_start_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
