@@ -15,9 +15,11 @@ namespace cel_mai_aproape_smr
         int mouse_x = 1;
         int mouse_y = 1;
         bool moving = false;
+        string topic_name;
         Pen pen;
         Pen pen_b;
         Form1 form1;
+        TextBox txt_topic;
         //SolidBrush brush = new SolidBrush(Color.Gold);
         public form_game(Form1 form1)
         {
@@ -29,6 +31,10 @@ namespace cel_mai_aproape_smr
 
             pen.StartCap = pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
             this.form1 = form1;
+            txt_topic = new TextBox();
+            this.Controls.Add(txt_topic);   AxHost yh jn un5 yhv5
+            txt_topic.Location = new Point(100, 500);
+            
 
 
         }

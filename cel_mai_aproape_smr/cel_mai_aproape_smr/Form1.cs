@@ -17,6 +17,7 @@ namespace cel_mai_aproape_smr
         topic topic;
         Timer timer_t;
         Random random;
+        public string c_topic;
         public String resurse = "../../resurse/";
         public String nume;
         private bool valid_strat = false;
@@ -53,7 +54,7 @@ namespace cel_mai_aproape_smr
             timer_t.Start();
             timer_t.Tick += new System.EventHandler(this.face_tick);
             random = new Random();
-            topic = new topic(this);
+            topic = new topic(this,game);
         }
 
         private void pb_start_Click(object sender, EventArgs e)
