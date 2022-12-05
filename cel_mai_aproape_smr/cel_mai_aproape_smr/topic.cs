@@ -17,8 +17,15 @@ namespace cel_mai_aproape_smr
         Button btn_topic_1;
         Button btn_topic_2;
         Button btn_topic_3;
-        
-        
+
+        public void see_pane()
+        {
+            panel_topic.Visible = true;
+            form1.panel_start.Visible = false;
+
+        }
+
+
         public topic(Form1 form1, form_game fGame)
         {
                 this.form1 = form1;             
@@ -60,10 +67,7 @@ namespace cel_mai_aproape_smr
             panel_topic.Controls.Add(btn_topic_3);
             this.init_btn(btn_topic_3, btn3_text, 2);
 
-
-            form1.panel_start.Visible = false;
-            panel_topic.Visible = true;
-
+            this.panel_topic.Visible = false;
             //click_event
 
             this.btn_topic_1.Click += new System.EventHandler(this.Btn_topic_Click); 

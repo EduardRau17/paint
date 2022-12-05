@@ -55,6 +55,7 @@ namespace cel_mai_aproape_smr
             timer_t.Tick += new System.EventHandler(this.face_tick);
             random = new Random();
             topic = new topic(this,game);
+            topic.create_topic();
         }
 
         private void pb_start_Click(object sender, EventArgs e)
@@ -69,7 +70,7 @@ namespace cel_mai_aproape_smr
             {
                 this.nume = txt_name.Text;
                 this.panel_name.BackColor = Color.Transparent;
-                topic.create_topic();
+                topic.see_pane();
 
             }
 
