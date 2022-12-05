@@ -40,8 +40,8 @@ namespace cel_mai_aproape_smr
             //topic_name = "plm";
             this.txt_topic.ForeColor = Color.Red;
             this.txt_topic.AutoSize = true;
-            this.txt_topic.BackColor= Color.Transparent;
-                       
+            this.txt_topic.BackColor = Color.Transparent;
+
 
         }
 
@@ -72,10 +72,10 @@ namespace cel_mai_aproape_smr
 
         private void create_border()
         {
-            g.DrawLine(pen_b,0,0,650,0);
-            g.DrawLine(pen_b,650,0,650,350);
-            g.DrawLine(pen_b,650,350,0,350);
-            g.DrawLine(pen_b, 0 ,350 , 0 ,0);
+            g.DrawLine(pen_b, 0, 0, 650, 0);
+            g.DrawLine(pen_b, 650, 0, 650, 350);
+            g.DrawLine(pen_b, 650, 350, 0, 350);
+            g.DrawLine(pen_b, 0, 350, 0, 0);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -84,7 +84,6 @@ namespace cel_mai_aproape_smr
             mouse_x = e.X;
             mouse_y = e.Y;
             panel_main.Cursor = Cursors.Cross;
-
         }
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
@@ -180,3 +179,4 @@ namespace cel_mai_aproape_smr
         }
     }
 }
+
