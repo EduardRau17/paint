@@ -48,7 +48,7 @@ namespace cel_mai_aproape_smr
             panel_topic.Location = new Point(213 / 2, 106);
             panel_topic.Size = new Size(300 * 2, 200);
 
-            string[] lines = System.IO.File.ReadAllLines("../../topics.txt");
+            string[] lines = System.IO.File.ReadAllLines("../../topic_cuvs/topics.txt");
             btn1_text = lines[rd.Next(6)];
             btn2_text = lines[rd.Next(6)];
             btn3_text = lines[rd.Next(6)];

@@ -20,6 +20,7 @@ namespace cel_mai_aproape_smr
         Pen pen_b;
         Form1 form1;
         Label txt_topic;
+        Cuvant cuvant;
         //SolidBrush brush = new SolidBrush(Color.Gold);
         public form_game(Form1 form1)
         {
@@ -141,12 +142,18 @@ namespace cel_mai_aproape_smr
 
             this.txt_topic.Text = topic_name;
 
+            cuvant = new Cuvant(this);
+
+            cuvant.create_cuv();
+
+            
+
         }
 
         private void pb_close_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-            form1.Visible = true;
+            form1.Close();
         }
 
         private void pb_eraser_Click(object sender, EventArgs e)
@@ -176,6 +183,16 @@ namespace cel_mai_aproape_smr
         private void pb_fill_Click(object sender, EventArgs e)
         {
             panel_main.BackColor = this.pen.Color;
+        }
+
+        public String get_text_topic()
+        {
+           
+            return this.txt_topic.Text;
+        }
+        public void set_cuv(String cuv)
+        {
+            this.lbl_cuv.Text = cuv;
         }
     }
 }
