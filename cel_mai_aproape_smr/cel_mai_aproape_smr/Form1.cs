@@ -60,11 +60,12 @@ namespace cel_mai_aproape_smr
 
         private void pb_start_Click(object sender, EventArgs e)
         {
-            if (txt_name.Text == default_text) { 
+                valid_strat = false;
+            if (!(txt_name.Text == default_text || txt_name.Text.Length == 0 || txt_name.Text.IndexOf(' ') == 0)) {
+                valid_strat = true;
 
             }
-            else
-                valid_strat = true;
+
 
             if (valid_strat)
             {

@@ -4,13 +4,24 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace cel_mai_aproape_smr
 {
     public partial class form_game : Form
     {
+        public TcpClient client;
+        public NetworkStream clientStream;
+        public bool can_draw = true;
+        public bool can_write = true;
+        public form_game clientForm; 
+        public Thread t;
+
+
+
         Graphics g;
         int mouse_x = 1;
         int mouse_y = 1;
@@ -20,7 +31,7 @@ namespace cel_mai_aproape_smr
         Pen pen_b;
         Form1 form1;
         Label txt_topic;
-        Cuvant cuvant;
+        Cuvant  ;
         //SolidBrush brush = new SolidBrush(Color.Gold);
         public form_game(Form1 form1)
         {
@@ -89,13 +100,15 @@ namespace cel_mai_aproape_smr
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)
         {
-
-            if (moving)
+            if (can_draw)
             {
-                g.DrawLine(pen, new Point(mouse_x, mouse_y), e.Location);
-                mouse_x = e.X;
-                mouse_y = e.Y;
-                //label1.Text=(mouse_x + "   " + mouse_y);
+                if (moving)
+                {
+                    g.DrawLine(pen, new Point(mouse_x, mouse_y), e.Location);
+                    mouse_x = e.X;
+                    mouse_y = e.Y;
+                    //label1.Text=(mouse_x + "   " + mouse_y);
+                }
             }
         }
 
@@ -171,7 +184,7 @@ namespace cel_mai_aproape_smr
         private void panel1_Click(object sender, EventArgs e)
         {
             PictureBox pictureBox = (PictureBox)sender;
-            pen.Width = pictureBox.Size.Width - 5;
+             pen.Width = pictureBox.Size.Width - 5;
         }
 
         private void panel_main_MouseEnter(object sender, EventArgs e)
