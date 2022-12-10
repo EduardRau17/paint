@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -17,12 +19,37 @@ namespace cel_mai_aproape_smr
         public NetworkStream clientStream;
         public bool can_draw = true;
         public bool can_write = true;
+        public bool ascult;
         public form_game clientForm; 
         public Thread t;
 
 
+        private void Asculta_client()
+        {
+            StreamReader citire = new StreamReader(clientStream);
+            String dateClient;
+            while (ascult)
+            {
+                dateClient = citire.ReadLine();
+                MethodInvoker m = new MethodInvoker(() => clientForm.chat_text.Text += ("Server: " + dateClient + Environment.NewLine));/* \n */
+                clientForm.chat_text.Invoke(m);
+            }
+        }
 
-        Graphics g;
+        private void tbDate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter) && textBox1.Text.Length > 0)
+            {
+                StreamWriter scriere = new StreamWriter(clientStream);
+                scriere.AutoFlush = true; // enable automatic flushing
+                //scriere.WriteLine(textBox1.Text);
+                chat_text.Text += form1.get_name() +": " + textBox1.Text + Environment.NewLine;
+                textBox1.Clear();
+            }
+        }
+
+
+                Graphics g;
         int mouse_x = 1;
         int mouse_y = 1;
         bool moving = false;
@@ -31,7 +58,7 @@ namespace cel_mai_aproape_smr
         Pen pen_b;
         Form1 form1;
         Label txt_topic;
-        Cuvant  ;
+        Cuvant cuvant ;
         //SolidBrush brush = new SolidBrush(Color.Gold);
         public form_game(Form1 form1)
         {
@@ -49,13 +76,14 @@ namespace cel_mai_aproape_smr
             this.txt_topic = new Label();
             this.Controls.Add(txt_topic);
             this.txt_topic.Location = new Point(800, 20);
-            //topic_name = "plm";
             this.txt_topic.ForeColor = Color.Red;
             this.txt_topic.AutoSize = true;
             this.txt_topic.BackColor = Color.Transparent;
 
 
         }
+
+
 
         public void change_topic(string topic_name)
         {
@@ -159,13 +187,22 @@ namespace cel_mai_aproape_smr
 
             cuvant.create_cuv();
 
-            
+            client = new TcpClient("127.0.0.1", 5000);
+            ascult = true;
+            t = new Thread(new ThreadStart(Asculta_client));
+            t.Start();
+            clientStream = client.GetStream();
+
+
 
         }
 
         private void pb_close_Click(object sender, EventArgs e)
         {
             this.Visible = false;
+            t.Abort();
+            client.Close();
+            clientStream.Close();
             form1.Close();
         }
 

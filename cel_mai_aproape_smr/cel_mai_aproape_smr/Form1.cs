@@ -91,5 +91,9 @@ namespace cel_mai_aproape_smr
         {
 
         }
+        public String get_name()
+        {
+            return this.nume;
+        }
     }
 }
