@@ -18,14 +18,20 @@ namespace cel_mai_aproape_smr
         public TcpClient client;
         public NetworkStream clientStream;
         public bool can_draw = true;
-        public bool can_write = true;
-        public bool ascult;
-        public form_game clientForm; 
+        //public bool can_write = true;
+        public bool ascult = true;
+        public form_game clientForm;
         public Thread t;
 
+        protected Dictionary<string, string> set_date;
 
         private void Asculta_client()
         {
+            if (!ascult)
+            {
+                return;
+            }
+
             StreamReader citire = new StreamReader(clientStream);
             String dateClient;
             while (ascult)
@@ -36,20 +42,28 @@ namespace cel_mai_aproape_smr
             }
         }
 
+        private void seteaza_date()
+        {
+            set_date = new Dictionary<string, string>();
+            set_date.Add("name", form1.get_name());
+            set_date.Add("what do", can_draw.ToString());
+
+        }
+
         private void tbDate_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter) && textBox1.Text.Length > 0)
             {
                 StreamWriter scriere = new StreamWriter(clientStream);
                 scriere.AutoFlush = true; // enable automatic flushing
-                //scriere.WriteLine(textBox1.Text);
-                chat_text.Text += form1.get_name() +": " + textBox1.Text + Environment.NewLine;
+                scriere.WriteLine(textBox1.Text);
+                chat_text.Text += form1.get_name() + ": " + textBox1.Text + Environment.NewLine;
                 textBox1.Clear();
             }
         }
 
 
-                Graphics g;
+        Graphics g;
         int mouse_x = 1;
         int mouse_y = 1;
         bool moving = false;
@@ -58,7 +72,7 @@ namespace cel_mai_aproape_smr
         Pen pen_b;
         Form1 form1;
         Label txt_topic;
-        Cuvant cuvant ;
+        Cuvant cuvant;
         //SolidBrush brush = new SolidBrush(Color.Gold);
         public form_game(Form1 form1)
         {
@@ -180,21 +194,32 @@ namespace cel_mai_aproape_smr
             pictureBox10.BackColor = Color.Transparent;
             panel1.BackColor = Color.Transparent;
 
+            connect_to_server();
 
+        }
+
+        public void connect_to_server() 
+        {
             this.txt_topic.Text = topic_name;
 
             cuvant = new Cuvant(this);
 
             cuvant.create_cuv();
+            try
+            {
+                client = new TcpClient("127.0.0.1", 5000);
+                ascult = true;
+                t = new Thread(new ThreadStart(Asculta_client));
+                t.Start();
+                clientStream = client.GetStream();
+            }
+            catch
+            {
+                //var msg = new MessageBox();
+                ascult = false;
+            }
 
-            client = new TcpClient("127.0.0.1", 5000);
-            ascult = true;
-            t = new Thread(new ThreadStart(Asculta_client));
-            t.Start();
-            clientStream = client.GetStream();
-
-
-
+            set_date = new Dictionary<string, string>();
         }
 
         private void pb_close_Click(object sender, EventArgs e)

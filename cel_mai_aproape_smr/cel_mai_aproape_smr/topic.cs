@@ -82,10 +82,17 @@ namespace cel_mai_aproape_smr
             Button btn = (Button)sender;
             //form1.c_topic = btn.Text;
             fgame.change_topic(btn.Text);
+
+            fgame.connect_to_server();
+
+            if (! fgame.ascult)
+            {
+                MessageBox.Show("Error Connecting to Server. Try again later :(");
+                return;
+            }
+
             form1.Visible = false;
             fgame.Show(); 
-
-            
         }
 
         private void init_btn(Button btn,String text,int id)
