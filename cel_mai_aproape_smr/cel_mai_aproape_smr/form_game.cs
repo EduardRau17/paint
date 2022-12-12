@@ -23,7 +23,7 @@ namespace cel_mai_aproape_smr
         public form_game clientForm;
         public Thread t;
 
-        protected Dictionary<string, string> set_date;
+        protected Dictionary<string, string> to_server_data;
 
         private void Asculta_client()
         {
@@ -42,16 +42,26 @@ namespace cel_mai_aproape_smr
             }
         }
 
-        private void seteaza_date()
+        private void set_data()
         {
-            set_date = new Dictionary<string, string>();
-            set_date.Add("name", form1.get_name());
-            set_date.Add("what do", can_draw.ToString());
+            to_server_data = new Dictionary<string, string>();
+            to_server_data.Add("name", form1.get_name());
+            to_server_data.Add("can_do", can_draw.ToString());
+
+
 
         }
 
         private void tbDate_KeyPress(object sender, KeyPressEventArgs e)
         {
+
+            if (textBox1.Text == lbl_cuv.Text) { 
+            
+                panel_main.BackColor= Color.Red;    
+            
+            }
+
+
             if (e.KeyChar == Convert.ToChar(Keys.Enter) && textBox1.Text.Length > 0)
             {
                 StreamWriter scriere = new StreamWriter(clientStream);
@@ -219,7 +229,8 @@ namespace cel_mai_aproape_smr
                 ascult = false;
             }
 
-            set_date = new Dictionary<string, string>();
+            to_server_data = new Dictionary<string, string>();
+
         }
 
         private void pb_close_Click(object sender, EventArgs e)
